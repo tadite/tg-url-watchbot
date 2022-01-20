@@ -3,10 +3,10 @@ package github.tadite.tg.tgchangebot;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class TgChangeBotApplicationTests {
 
-    @Test
+//    @Test
     void contextLoads() {
     }
 
