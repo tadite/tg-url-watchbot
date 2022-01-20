@@ -23,7 +23,7 @@ public class UrlContentChangedTask {
 
     private final UsersNotifyService usersNotifyService;
 
-    @Scheduled(fixedRateString = "PT1M")
+    @Scheduled(fixedRateString = "PT30M")
     public void runTask() {
         log.info("Starting task...");
         Map<String, List<WatchingUrl>> urls = watchingUrlRepository.findAll().stream()
