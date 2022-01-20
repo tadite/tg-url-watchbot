@@ -1,12 +1,9 @@
 package github.tadite.tg.tgchangebot;
 
 import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-
-import java.nio.file.StandardOpenOption;
 
 @Service
 public class UrlContentHashService {
@@ -19,8 +16,8 @@ public class UrlContentHashService {
                 .retrieve()
                 .bodyToFlux(DataBuffer.class);
 
-        DataBufferUtils.write(dataBuffer, destination,
-                StandardOpenOption.CREATE)
-                .share().block();
+//        DataBufferUtils.write(dataBuffer, destination,
+//                StandardOpenOption.CREATE)
+//                .share().block();
     }
 }
