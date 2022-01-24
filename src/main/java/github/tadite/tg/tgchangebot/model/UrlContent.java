@@ -27,6 +27,7 @@ public class UrlContent {
 
     private String url;
 
+    @Column(columnDefinition="TEXT")
     private String content;
 
     private LocalDateTime changeTime;

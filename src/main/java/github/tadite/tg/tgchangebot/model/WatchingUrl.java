@@ -27,6 +27,15 @@ public class WatchingUrl {
 
     @Column(name = "url")
     private String url;
+    //div[@class="col-24 col-xl-20 offset-xl-2"]/div[@class="row"]
+    @Column(name = "xpath")
+    private String xpath;
+
+    public WatchingUrl(String chatId, String url, String xpath) {
+        this.chatId = chatId;
+        this.url = url;
+        this.xpath = xpath;
+    }
 
     public WatchingUrl(String chatId, String url) {
         this.chatId = chatId;

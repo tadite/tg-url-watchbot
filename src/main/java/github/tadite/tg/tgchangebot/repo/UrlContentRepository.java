@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface UrlContentRepository extends JpaRepository<UrlContent, UUID> {
 
-    Optional<UrlContent> findFirstByUrlOrderByChangeTime(String url);
+    Optional<UrlContent> findFirstByUrlOrderByChangeTimeDesc(String url);
 
 }

@@ -1,7 +1,6 @@
 package github.tadite.tg.tgchangebot;
 
 import github.tadite.tg.tgchangebot.model.WatchingUrl;
-import github.tadite.tg.tgchangebot.repo.UrlContentRepository;
 import github.tadite.tg.tgchangebot.repo.WatchingUrlRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +22,8 @@ public class UrlContentChangedTask {
 
     private final UsersNotifyService usersNotifyService;
 
-    @Scheduled(fixedRateString = "PT30M")
+//    @Scheduled(fixedRateString = "PT30M")
+    @Scheduled(fixedDelay = 10000)
     public void runTask() {
         log.info("Starting task...");
         Map<String, List<WatchingUrl>> urls = watchingUrlRepository.findAll().stream()
