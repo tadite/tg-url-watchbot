@@ -1,4 +1,4 @@
-package github.tadite.tg.tgchangebot;
+package github.tadite.tg.tgchangebot.config;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

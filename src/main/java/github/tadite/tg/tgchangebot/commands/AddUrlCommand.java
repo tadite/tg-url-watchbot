@@ -1,6 +1,6 @@
 package github.tadite.tg.tgchangebot.commands;
 
-import github.tadite.tg.tgchangebot.UrlContentClient;
+import github.tadite.tg.tgchangebot.service.UrlContentClient;
 import github.tadite.tg.tgchangebot.model.WatchingUrl;
 import github.tadite.tg.tgchangebot.repo.WatchingUrlRepository;
 import lombok.RequiredArgsConstructor;

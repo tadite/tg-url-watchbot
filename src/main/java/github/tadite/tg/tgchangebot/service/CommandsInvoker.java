@@ -1,4 +1,4 @@
-package github.tadite.tg.tgchangebot;
+package github.tadite.tg.tgchangebot.service;
 
 import github.tadite.tg.tgchangebot.commands.Command;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ public class CommandsInvoker {
 
     private final List<Command> commands;
 
-    void update(Message msg, TelegramLongPollingBot bot) {
+    public void update(Message msg, TelegramLongPollingBot bot) {
         commands.forEach(command -> command.update(msg, bot));
     }
 

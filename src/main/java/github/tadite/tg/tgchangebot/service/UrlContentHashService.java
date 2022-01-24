@@ -1,4 +1,4 @@
-package github.tadite.tg.tgchangebot;
+package github.tadite.tg.tgchangebot.service;
 
 import github.tadite.tg.tgchangebot.model.UrlContent;
 import github.tadite.tg.tgchangebot.repo.UrlContentRepository;
@@ -35,19 +35,5 @@ public class UrlContentHashService {
 
     private boolean isHashChanged(String contentHash, UrlContent urlContent) {
         return !urlContent.getContent().equals(contentHash);
-    }
-
-    @SneakyThrows
-    private String getUrlContent(String url) {
-        String content = webClient.get()
-                .uri(url)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
-
-        String body = StringUtils.substringBetween(content,
-                "<div class=\"col-24 col-xl-20 offset-xl-2\">", "</div>");
-
-        return body;
     }
 }

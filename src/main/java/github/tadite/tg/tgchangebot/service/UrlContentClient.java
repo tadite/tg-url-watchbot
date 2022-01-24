@@ -1,4 +1,4 @@
-package github.tadite.tg.tgchangebot;
+package github.tadite.tg.tgchangebot.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

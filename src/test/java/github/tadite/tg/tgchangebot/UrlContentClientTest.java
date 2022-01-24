@@ -1,13 +1,13 @@
 package github.tadite.tg.tgchangebot;
 
+import github.tadite.tg.tgchangebot.service.UrlContent;
+import github.tadite.tg.tgchangebot.service.UrlContentClient;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Disabled
 @SpringBootTest

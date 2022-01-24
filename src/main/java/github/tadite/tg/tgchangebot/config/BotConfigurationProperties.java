@@ -1,4 +1,4 @@
-package github.tadite.tg.tgchangebot;
+package github.tadite.tg.tgchangebot.config;
 
 import lombok.Getter;
 import lombok.Setter;

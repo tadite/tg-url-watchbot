@@ -1,7 +1,9 @@
-package github.tadite.tg.tgchangebot;
+package github.tadite.tg.tgchangebot.service;
 
 import github.tadite.tg.tgchangebot.model.WatchingUrl;
 import github.tadite.tg.tgchangebot.repo.WatchingUrlRepository;
+import github.tadite.tg.tgchangebot.service.UrlContentHashService;
+import github.tadite.tg.tgchangebot.service.UsersNotifyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

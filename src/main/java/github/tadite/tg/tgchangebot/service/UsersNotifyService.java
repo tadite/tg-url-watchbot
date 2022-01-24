@@ -1,4 +1,4 @@
-package github.tadite.tg.tgchangebot;
+package github.tadite.tg.tgchangebot.service;
 
 import github.tadite.tg.tgchangebot.model.WatchingUrl;
 import github.tadite.tg.tgchangebot.repo.WatchingUrlRepository;
