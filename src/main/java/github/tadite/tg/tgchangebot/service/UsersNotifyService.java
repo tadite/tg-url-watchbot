@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 
 import java.util.List;
 
@@ -18,14 +20,19 @@ public class UsersNotifyService {
     private final BotService botService;
 
     @SneakyThrows
-    public void notifyWatchingUsers(String url) {
-        List<WatchingUrl> watchingUrls = watchingUrlRepository.findAllByUrl(url);
+    public void notifyWatchingUsers(UrlContent urlContent, UrlXpath urlXpath) {
+        List<WatchingUrl> watchingUrls = watchingUrlRepository.findAllByUrlXpath(urlXpath);
         for (WatchingUrl watchingUrl : watchingUrls) {
-            botService.execute(getNotifyMessage(url, watchingUrl));
+            botService.execute(getNotifyMessage(urlXpath, watchingUrl));
+            botService.execute(getScreenshotMessage(urlContent, watchingUrl));
         }
     }
 
-    private SendMessage getNotifyMessage(String url, WatchingUrl watchingUrl) {
-        return new SendMessage(watchingUrl.getChatId(), String.format("Url content has changed: %s", url));
+    private SendPhoto getScreenshotMessage(UrlContent urlContent, WatchingUrl watchingUrl) {
+        return new SendPhoto(watchingUrl.getChatId(), new InputFile(urlContent.getScreenshot()));
+    }
+
+    private SendMessage getNotifyMessage(UrlXpath urlXpath, WatchingUrl watchingUrl) {
+        return new SendMessage(watchingUrl.getChatId(), String.format("Url content has changed: %s", urlXpath));
     }
 }

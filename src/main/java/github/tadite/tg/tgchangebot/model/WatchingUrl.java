@@ -1,10 +1,13 @@
 package github.tadite.tg.tgchangebot.model;
 
+import github.tadite.tg.tgchangebot.service.UrlXpath;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Table(name = "watching_url", uniqueConstraints = @UniqueConstraint(columnNames = {"chat_id", "url"}))
@@ -25,20 +28,15 @@ public class WatchingUrl {
     @Column(name = "chat_id")
     private String chatId;
 
-    @Column(name = "url")
-    private String url;
-    //div[@class="col-24 col-xl-20 offset-xl-2"]/div[@class="row"]
-    @Column(name = "xpath")
-    private String xpath;
+    @Embedded
+    private UrlXpath urlXpath;
 
-    public WatchingUrl(String chatId, String url, String xpath) {
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
+
+    public WatchingUrl(String chatId, UrlXpath urlXpath) {
         this.chatId = chatId;
-        this.url = url;
-        this.xpath = xpath;
+        this.urlXpath = urlXpath;
     }
 
-    public WatchingUrl(String chatId, String url) {
-        this.chatId = chatId;
-        this.url = url;
-    }
 }

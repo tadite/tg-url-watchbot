@@ -1,13 +1,14 @@
 package github.tadite.tg.tgchangebot.repo;
 
-import github.tadite.tg.tgchangebot.model.UrlContent;
+import github.tadite.tg.tgchangebot.model.UrlContentHistory;
+import github.tadite.tg.tgchangebot.service.UrlXpath;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UrlContentRepository extends JpaRepository<UrlContent, UUID> {
+public interface UrlContentRepository extends JpaRepository<UrlContentHistory, UUID> {
 
-    Optional<UrlContent> findFirstByUrlOrderByChangeTimeDesc(String url);
+    Optional<UrlContentHistory> findFirstByUrlXpathOrderByLastModifiedDateDesc(UrlXpath urlXpath);
 
 }

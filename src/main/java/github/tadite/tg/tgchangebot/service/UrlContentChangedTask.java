@@ -1,5 +1,6 @@
 package github.tadite.tg.tgchangebot.service;
 
+import github.tadite.tg.tgchangebot.model.UrlContentHistory;
 import github.tadite.tg.tgchangebot.model.WatchingUrl;
 import github.tadite.tg.tgchangebot.repo.WatchingUrlRepository;
 import github.tadite.tg.tgchangebot.service.UrlContentHashService;
@@ -24,17 +25,17 @@ public class UrlContentChangedTask {
 
     private final UsersNotifyService usersNotifyService;
 
-//    @Scheduled(fixedRateString = "PT30M")
+    //    @Scheduled(fixedRateString = "PT30M")
     @Scheduled(fixedDelay = 10000)
     public void runTask() {
         log.info("Starting task...");
-        Map<String, List<WatchingUrl>> urls = watchingUrlRepository.findAll().stream()
-                .collect(Collectors.groupingBy(WatchingUrl::getUrl));
+        Map<UrlXpath, List<WatchingUrl>> urls = watchingUrlRepository.findAll().stream()
+                .collect(Collectors.groupingBy(WatchingUrl::getUrlXpath));
 
-        for (String url : urls.keySet()) {
-            boolean changed = urlContentHashService.checkUrl(url);
-            if (changed){
-                usersNotifyService.notifyWatchingUsers(url);
+        for (UrlXpath urlXpath : urls.keySet()) {
+            var urlContent = urlContentHashService.checkUrl(urlXpath);
+            if (urlContent != null) {
+                usersNotifyService.notifyWatchingUsers(urlContent, urlXpath);
             }
         }
     }

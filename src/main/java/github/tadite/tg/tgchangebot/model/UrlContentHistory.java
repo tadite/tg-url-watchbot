@@ -1,20 +1,19 @@
 package github.tadite.tg.tgchangebot.model;
 
+import github.tadite.tg.tgchangebot.service.UrlXpath;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class UrlContent {
+public class UrlContentHistory {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -25,17 +24,18 @@ public class UrlContent {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    private String url;
+    @Embedded
+    private UrlXpath urlXpath;
 
     @Column(columnDefinition="TEXT")
     private String content;
 
-    private LocalDateTime changeTime;
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
 
-    public UrlContent(String url, String content) {
-        this.url = url;
+    public UrlContentHistory(UrlXpath urlXpath, String content) {
+        this.urlXpath = urlXpath;
         this.content = content;
-        this.changeTime = LocalDateTime.now();
     }
 
 }

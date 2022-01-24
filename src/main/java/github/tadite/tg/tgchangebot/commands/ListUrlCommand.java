@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -43,12 +44,13 @@ public class ListUrlCommand implements Command {
         if (urls.isEmpty())
             return "Watching list is empty";
 
-        return String.format("Watching list:\n %s", getUrlsString(urls));
+        return String.format("Watching list:\n%s", getUrlsString(urls));
     }
 
     private String getUrlsString(List<WatchingUrl> urls) {
         return urls.stream()
-                .map(WatchingUrl::getUrl)
+                .map(WatchingUrl::getUrlXpath)
+                .map(Objects::toString)
                 .collect(Collectors.joining("\n"));
     }
 }

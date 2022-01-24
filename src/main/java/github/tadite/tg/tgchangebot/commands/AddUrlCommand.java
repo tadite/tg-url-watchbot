@@ -1,6 +1,7 @@
 package github.tadite.tg.tgchangebot.commands;
 
-import github.tadite.tg.tgchangebot.service.UrlContentClient;
+import github.tadite.tg.tgchangebot.service.UrlXpath;
+import github.tadite.tg.tgchangebot.service.WebDriverClient;
 import github.tadite.tg.tgchangebot.model.WatchingUrl;
 import github.tadite.tg.tgchangebot.repo.WatchingUrlRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @RequiredArgsConstructor
 public class AddUrlCommand implements Command {
 
-    private final UrlContentClient urlContentClient;
+    private final WebDriverClient webDriverClient;
 
     private final WatchingUrlRepository watchingUrlRepository;
 
@@ -25,16 +26,16 @@ public class AddUrlCommand implements Command {
                 String afterCommand = getPartAfter(msg.getText(), " ");
                 String url = getPartBefore(afterCommand, " ");
                 String xpath = getPartAfter(afterCommand, " ");
+                UrlXpath urlXpath = new UrlXpath(url, xpath);
 
                 try {
-                    urlContentClient.getContent(url, xpath);
+                    webDriverClient.getContent(urlXpath);
                     String chatId = msg.getChatId().toString();
-                    watchingUrlRepository.save(new WatchingUrl(chatId, url, xpath));
+                    watchingUrlRepository.save(new WatchingUrl(chatId, urlXpath));
                     bot.execute(getAddedMessage(msg, url, xpath));
                 } catch (Exception e) {
                     bot.execute(getErrorMessage(msg, url, xpath, e));
                 }
-
             }
         } catch (TelegramApiException e) {
             e.printStackTrace();

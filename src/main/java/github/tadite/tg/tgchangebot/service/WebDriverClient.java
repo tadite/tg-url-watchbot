@@ -9,9 +9,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UrlContentClient {
+public class WebDriverClient {
 
     private final WebDriver webDriver;
+
+    public UrlContent getContent(UrlXpath urlXpath) {
+        return getContent(urlXpath.getUrl(), urlXpath.getXpath());
+    }
 
     @SneakyThrows
     public synchronized UrlContent getContent(String url, String xpath) {
