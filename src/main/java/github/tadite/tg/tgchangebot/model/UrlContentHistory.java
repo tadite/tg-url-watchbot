@@ -30,12 +30,12 @@ public class UrlContentHistory {
     @Column(columnDefinition="TEXT")
     private String content;
 
-    @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
     public UrlContentHistory(UrlXpath urlXpath, String content) {
         this.urlXpath = urlXpath;
         this.content = content;
+        this.lastModifiedDate = LocalDateTime.now();
     }
 
 }

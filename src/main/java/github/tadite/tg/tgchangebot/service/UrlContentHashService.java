@@ -20,11 +20,9 @@ public class UrlContentHashService {
         Optional<UrlContentHistory> lastSavedUrlHash = urlContentRepository.findFirstByUrlXpathOrderByLastModifiedDateDesc(urlXpath);
         if (lastSavedUrlHash.isPresent()) {
             if (isHashChanged(content, lastSavedUrlHash.get())) {
-                urlContentRepository.save(new UrlContentHistory(urlXpath, content.getHtml()));
                 return content;
             }
         } else {
-            urlContentRepository.save(new UrlContentHistory(urlXpath, content.getHtml()));
             return content;
         }
         return null;

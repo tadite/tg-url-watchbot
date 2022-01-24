@@ -4,7 +4,6 @@ import github.tadite.tg.tgchangebot.service.UrlXpath;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,12 +30,12 @@ public class WatchingUrl {
     @Embedded
     private UrlXpath urlXpath;
 
-    @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
     public WatchingUrl(String chatId, UrlXpath urlXpath) {
         this.chatId = chatId;
         this.urlXpath = urlXpath;
+        this.lastModifiedDate = LocalDateTime.now();
     }
 
 }
